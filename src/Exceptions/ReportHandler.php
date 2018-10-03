@@ -64,11 +64,8 @@ class ReportHandler extends ExceptionHandler
     {
         $this->client = new GuzzleHttp\Client();
         try{
-            // $getToken = $this->client->get(config('lumenReportExceptions.sendReport.API_Url').'login');
-            // $token = $getToken->getBody()->getContents();
             $data = $this->client->post(config('lumenReportExceptions.sendReport.API_Url').'reports',
                 ['form_params' => [
-                                //    'token'      => $token,
                                    'env'        => env('APP_ENV','unknown'),
                                    'client_key' => env('IMMUNE_KEY'),
                                    'req_payload'=> $request->getContent(),
