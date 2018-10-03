@@ -1,5 +1,5 @@
 {
-    "name": "roketin/immune",
+    "name": "beykun/immune",
     "description": "package to report exceptions for lumen framework by Roketin",
     "type": "library",
     "license": "MIT",
