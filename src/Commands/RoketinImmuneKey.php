@@ -11,7 +11,7 @@ class RoketinImmuneKey extends Command
      *
      * @var string
      */
-    protected $signature = 'immune-key:generate';
+    protected $signature = 'r-immune-key:generate';
 
     /**
      * The console command description.
