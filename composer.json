@@ -1,0 +1,27 @@
+{
+    "name": "roketin/immune",
+    "description": "package to report exceptions for lumen framework by Roketin",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "danielsugianto",
+            "email": "daniel_sugianto@yahoo.com",
+            "company": "Roketin"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Roketin\\Immune\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Roketin\\Immune\\ReportExceptionsServiceProvider"
+            ]
+        }
+    }
+}
