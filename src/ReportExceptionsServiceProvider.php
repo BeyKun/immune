@@ -19,7 +19,7 @@ class ReportExceptionsServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->commands([
-            \Roketin\Immune\Commands\RoketinImmuneKey::class,
+            \Beykun\Immune\Commands\RoketinImmuneKey::class,
         ]);
 
         $this->publishes([
