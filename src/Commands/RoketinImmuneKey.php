@@ -1,6 +1,6 @@
 <?php
 
-namespace Roketin\Immune\Commands;
+namespace Beykun\Immune\Commands;
 
 use Illuminate\Console\Command;
 

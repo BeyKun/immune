@@ -1,6 +1,6 @@
 <?php
 
-namespace Roketin\Immune\Exceptions;
+namespace Beykun\Immune\Exceptions;
 
 use Exception;
 use Illuminate\Http\Request;
