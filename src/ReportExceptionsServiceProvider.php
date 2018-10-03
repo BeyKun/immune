@@ -1,5 +1,5 @@
 <?php
-namespace Roketin\Immune;
+namespace Beykun\Immune;
 
 use Illuminate\Support\ServiceProvider;
 
