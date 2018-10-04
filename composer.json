@@ -1,5 +1,5 @@
 {
-    "name": "beykun/immune",
+    "name": "roketin/immune",
     "description": "package to report exceptions for lumen framework by Roketin",
     "type": "library",
     "license": "MIT",
@@ -8,19 +8,26 @@
             "name": "Bayu Rasukma Raga",
             "email": "bayurasukmaraga@gmail.com",
             "company": "Roketin"
+        },
+        {
+            "name": "danielsugianto",
+            "email": "daniel_sugianto@yahoo.com",
+            "company": "Roketin"
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
+    "require": {
+        "guzzlehttp/guzzle": "^6.3"
+    },
     "autoload": {
         "psr-4": {
-            "Beykun\\Immune\\": "src/"
+            "Roketin\\Immune\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Beykun\\Immune\\ReportExceptionsServiceProvider"
+                "Roketin\\Immune\\ReportExceptionsServiceProvider"
             ]
         }
     }

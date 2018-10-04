@@ -1,5 +1,5 @@
 <?php
-namespace Beykun\Immune;
+namespace Roketin\Immune;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -19,7 +19,7 @@ class ReportExceptionsServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->commands([
-            \Beykun\Immune\Commands\RoketinImmuneKey::class,
+            \Roketin\Immune\Commands\RoketinImmuneKey::class,
         ]);
 
         $this->publishes([
