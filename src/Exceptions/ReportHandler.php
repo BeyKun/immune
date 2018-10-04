@@ -35,7 +35,7 @@ class ReportHandler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
-        $this->sendExceptionReport($exception);
+        $this->sendException($exception, NULL);
         parent::report($exception);
     }
 
@@ -49,7 +49,7 @@ class ReportHandler extends ExceptionHandler
     public function render($request, Exception $exception)
     {   
         if ($this->shouldReport($exception)){
-            $this->sendExceptionRender($exception, $request);
+            $this->sendException($exception, $request);
         }
         return parent::render($request, $exception);
     }
@@ -60,7 +60,7 @@ class ReportHandler extends ExceptionHandler
      * @param Exception                $exception
      * @param \Illuminate\Http\Request $request
      */
-    protected function sendExceptionRender(Exception $exception, $request)
+    protected function sendException(Exception $exception, $request)
     {
         $this->client = new GuzzleHttp\Client();
         try{
@@ -68,9 +68,9 @@ class ReportHandler extends ExceptionHandler
                 ['form_params' => [
                                    'env'        => env('APP_ENV','unknown'),
                                    'client_key' => env('IMMUNE_KEY'),
-                                   'req_payload'=> $request->getContent(),
-                                   'app_url'    => env('IMMUNE_URL','unknown'),
-                                   'full_url'   => $request->fullUrl(),
+                                   'req_payload'=> ($request != null) ? $request->getContent() : 'unknow',
+                                   'app_url'    => env('APP_URL','unknown'),
+                                   'full_url'   => ($request != null) ? $request->fullUrl() : 'unknow',
                                    'exc_class'  => get_class($exception),
                                    'exc_msg'    => $exception->getMessage(),
                                    'exc_code'   => $exception->getCode(),
@@ -80,34 +80,8 @@ class ReportHandler extends ExceptionHandler
                                   ]
                 ]
             );
-            dd($data->getBody()->getContents());
         } catch(GuzzleHttp\Exception\RequestException $e){
               return json_decode($e->getMessage());
         }
     }
-    
-    protected function sendExceptionReport(Exception $exception)
-    {
-        $this->client = new GuzzleHttp\Client();
-        try{
-            $data = $this->client->post(config('lumenReportExceptions.sendReport.API_Url').'reports',
-                ['form_params' => [
-                                   'env'        => env('APP_ENV','unknown'),
-                                   'client_key' => env('IMMUNE_KEY'),
-                                   'app_url'    => env('IMMUNE_URL','unknown'),
-                                   'full_url'   => 'unknow',
-                                   'exc_class'  => get_class($exception),
-                                   'exc_msg'    => $exception->getMessage(),
-                                   'exc_code'   => $exception->getCode(),
-                                   'exc_file'   => $exception->getFile(),
-                                   'exc_line'   => $exception->getLine(),
-                                   'stack_trace'=> $exception->getTraceAsString()
-                                  ]
-                ]
-            );
-            dd($data->getBody()->getContents());
-        } catch(GuzzleHttp\Exception\RequestException $e){
-              return json_decode($e->getMessage());
-        }
-    } 
 }
